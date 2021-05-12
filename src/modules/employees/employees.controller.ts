@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { AddEmployeeDto } from './dtos/add-employee.dto';
 import { GetEmployeeDto } from './dtos/get-employee.dto';
+import { UpdateEmployeeDto } from './dtos/update-employee.dto';
 import { EmployeesService } from './employees.service';
 
 @Controller('employees')
@@ -39,7 +40,7 @@ export class EmployeesController {
   @Put(':id')
   async update(
     @Param('id', new ParseIntPipe()) id: number,
-    @Body() addEmployeeDto: AddEmployeeDto,
+    @Body() addEmployeeDto: UpdateEmployeeDto,
   ): Promise<GetEmployeeDto> {
     return await this.employeesService.update(id, addEmployeeDto);
   }

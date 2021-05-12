@@ -1,6 +1,6 @@
 import { AbstractBaseEntity } from '@common/entities/abstract-base.entity';
 import { PositionEntity } from '@modules/positions/position.entity';
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity('employee')
 export class EmployeeEntity extends AbstractBaseEntity {
@@ -38,6 +38,9 @@ export class EmployeeEntity extends AbstractBaseEntity {
   @Column({ name: 'hiring_date', type: 'date', nullable: true })
   hiringDate: Date;
 
-  @ManyToOne(() => PositionEntity, (position) => position.employees)
-  position: PositionEntity;
+  @ManyToOne(() => PositionEntity, (position) => position.employees, {
+    eager: true,
+  })
+  @JoinColumn({ name: 'position_id' })
+  positionId: PositionEntity;
 }

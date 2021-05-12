@@ -49,6 +49,8 @@ export class EmployeeDto extends AbstractBaseDto {
   hiringDate: Date;
 
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
   @Type(() => PositionDto)
-  position: PositionDto;
+  positionId: PositionDto;
 }

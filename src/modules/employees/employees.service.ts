@@ -52,19 +52,24 @@ export class EmployeesService {
     id: number,
     updateEmployeeDto: UpdateEmployeeDto,
   ): Promise<GetEmployeeDto> {
-    const employee = await this.employeesRepository.findOne(id);
+    const employee = await this.employeesRepository.findOne(id, {
+      loadEagerRelations: false,
+    });
 
     if (!employee) {
       throw new NotFoundException(`Employee not found`);
     }
 
     const employeeToUpdate = classToPlain(updateEmployeeDto);
-    await this.employeesRepository.save(employeeToUpdate);
+    await this.employeesRepository.merge(employee, employeeToUpdate).save();
+    await employee.reload();
     return plainToClass(GetEmployeeDto, employee);
   }
 
   async delete(id: number): Promise<GetEmployeeDto> {
-    const employee = await this.employeesRepository.findOne(id);
+    const employee = await this.employeesRepository.findOne(id, {
+      loadEagerRelations: false,
+    });
 
     if (!employee) {
       throw new NotFoundException(`Employee not found`);

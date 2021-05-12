@@ -11,6 +11,6 @@ export class AreaEntity extends AbstractBaseEntity {
   })
   name: string;
 
-  @OneToMany(() => PositionEntity, (position) => position.area)
+  @OneToMany(() => PositionEntity, (position) => position.areaId)
   positions: PositionEntity[];
 }

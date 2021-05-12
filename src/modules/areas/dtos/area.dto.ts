@@ -11,6 +11,7 @@ export class AreaDto extends AbstractBaseDto {
   @MaxLength(30)
   name: string;
 
+  @Expose()
   @Type(() => PositionDto)
   positions: PositionDto[];
 }
