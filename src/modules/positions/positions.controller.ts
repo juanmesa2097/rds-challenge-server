@@ -7,9 +7,9 @@ import { PositionsService } from './positions.service';
 export class PositionsController {
   constructor(private positionsService: PositionsService) {}
 
-  @Get(':areaId')
+  @Get('area/:areaId')
   async getAll(
-    @Param(new ParseIntPipe()) areaId: number,
+    @Param('areaId', new ParseIntPipe()) areaId: number,
   ): Promise<WrapperResult<GetPositionDto[]>> {
     return await this.positionsService.getByAreaId(areaId);
   }
