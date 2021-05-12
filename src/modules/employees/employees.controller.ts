@@ -4,4 +4,9 @@ import { EmployeesService } from './employees.service';
 @Controller('employees')
 export class EmployeesController {
   constructor(private employeesService: EmployeesService) {}
+
+  // @Get()
+  // async getAll(): Promise<> {
+
+  // }
 }

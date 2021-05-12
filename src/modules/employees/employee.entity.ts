@@ -1,6 +1,6 @@
 import { AbstractBaseEntity } from '@common/entities/abstract-base.entity';
-import { Column, Entity } from 'typeorm';
-import { EmployeeArea } from './enums/employee-area.enum';
+import { PositionEntity } from '@modules/positions/position.entity';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
 @Entity('employee')
 export class EmployeeEntity extends AbstractBaseEntity {
@@ -30,13 +30,6 @@ export class EmployeeEntity extends AbstractBaseEntity {
   country: string;
 
   @Column({
-    type: 'varchar',
-    length: 20,
-    nullable: false,
-  })
-  area: EmployeeArea;
-
-  @Column({
     type: 'integer',
     nullable: false,
   })
@@ -45,5 +38,6 @@ export class EmployeeEntity extends AbstractBaseEntity {
   @Column({ name: 'hiring_date', type: 'date', nullable: true })
   hiringDate: Date;
 
-  //   position: GenericType;
+  @ManyToOne(() => PositionEntity, (position) => position.employees)
+  position: PositionEntity;
 }
