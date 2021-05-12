@@ -29,7 +29,9 @@ export class EmployeesService {
 
   async getById(id: number): Promise<GetEmployeeDto> {
     try {
-      const employee = await this.employeesRepository.findOne(id);
+      const employee = await this.employeesRepository.findOne(id, {
+        loadRelationIds: true,
+      });
 
       if (!employee) {
         throw new NotFoundException(`Employee not found`);
