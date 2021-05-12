@@ -23,7 +23,8 @@ export class ConfigService {
       username: this.getValue('POSTGRES_USERNAME'),
       password: this.getValue('POSTGRES_PASSWORD'),
       database: this.getValue('POSTGRES_DATABASE'),
-      entities: ['**/*.entity{.ts,.js}'],
+      synchronize: Boolean(this.getValue('SYNCHRONIZE', false)),
+      entities: [__dirname + '/../**/*.entity.{js,ts}'],
       migrationsTableName: 'migration',
       migrations: ['src/migration/*.ts'],
       cli: {

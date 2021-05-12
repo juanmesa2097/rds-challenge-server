@@ -1,8 +1,9 @@
 import { AbstractBaseEntity } from '@common/entities/abstract-base.entity';
-import { Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 import { EmployeeArea } from './enums/employee-area.enum';
 
-export default class EmployeeEntity extends AbstractBaseEntity {
+@Entity('employee')
+export class EmployeeEntity extends AbstractBaseEntity {
   @Column({
     type: 'varchar',
     length: 50,
@@ -36,7 +37,7 @@ export default class EmployeeEntity extends AbstractBaseEntity {
   area: EmployeeArea;
 
   @Column({
-    type: 'tinyint',
+    type: 'integer',
     nullable: false,
   })
   commission: number;
