@@ -1,6 +1,6 @@
 import { AbstractBaseEntity } from '@common/entities/abstract-base.entity';
 import { PositionEntity } from '@modules/positions/position.entity';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, RelationId } from 'typeorm';
 
 @Entity('employee')
 export class EmployeeEntity extends AbstractBaseEntity {
@@ -31,7 +31,7 @@ export class EmployeeEntity extends AbstractBaseEntity {
 
   @Column({
     type: 'integer',
-    nullable: false,
+    nullable: true,
   })
   commission: number;
 
@@ -42,5 +42,9 @@ export class EmployeeEntity extends AbstractBaseEntity {
     eager: true,
   })
   @JoinColumn({ name: 'position_id' })
-  positionId: PositionEntity;
+  position: PositionEntity;
+
+  @Column({ name: 'position_id' })
+  @RelationId((employee: EmployeeEntity) => employee.position)
+  positionId: number;
 }

@@ -29,9 +29,24 @@ export class EmployeesService {
 
   async getById(id: number): Promise<GetEmployeeDto> {
     try {
-      const employee = await this.employeesRepository.findOne(id, {
-        loadRelationIds: true,
-      });
+      const employee = await this.employeesRepository
+        .createQueryBuilder('employee')
+        .addSelect('employee.id', 'id')
+        .addSelect('employee.name', 'name')
+        .addSelect('employee.username', 'username')
+        .addSelect('employee.username', 'username')
+        .addSelect('employee.dateOfBirth', 'dateOfBirth')
+        .addSelect('employee.country', 'country')
+        .addSelect('employee.commission', 'commission')
+        .addSelect('employee.hiringDate', 'hiringDate')
+        .addSelect('employee.position_id', 'positionId')
+        .addSelect('employee.created_at', 'createdAt')
+        .addSelect('employee.updated_at', 'updatedAt')
+        .addSelect('area.id', 'areaId')
+        .innerJoin('employee.position', 'position')
+        .innerJoin('position.area', 'area')
+        .where('employee.id = :id', { id })
+        .getRawOne();
 
       if (!employee) {
         throw new NotFoundException(`Employee not found`);

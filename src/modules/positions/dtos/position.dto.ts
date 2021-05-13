@@ -13,10 +13,13 @@ export class PositionDto extends AbstractBaseDto {
   name: string;
 
   @Expose()
+  @Type(() => AreaDto)
+  area: AreaDto;
+
+  @Expose()
   @IsNotEmpty()
   @IsNumber()
-  @Type(() => AreaDto)
-  areaId: AreaDto;
+  areaId: number;
 
   @Expose()
   @Type(() => EmployeeDto)

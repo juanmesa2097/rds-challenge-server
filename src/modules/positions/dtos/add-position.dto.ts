@@ -9,4 +9,5 @@ export class AddPositionDto extends OmitType(PositionDto, [
   'updatedAt',
   'employees',
   'status',
+  'area',
 ] as const) {}

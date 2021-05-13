@@ -5,6 +5,7 @@ import {
   IsDate,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Max,
   MaxLength,
@@ -37,7 +38,7 @@ export class EmployeeDto extends AbstractBaseDto {
   country: string;
 
   @Expose()
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   @Min(0)
   @Max(100)
@@ -49,8 +50,14 @@ export class EmployeeDto extends AbstractBaseDto {
   hiringDate: Date;
 
   @Expose()
+  @Type(() => PositionDto)
+  position: PositionDto;
+
+  @Expose()
   @IsNotEmpty()
   @IsNumber()
-  @Type(() => PositionDto)
-  positionId: PositionDto;
+  positionId: number;
+
+  @Expose()
+  areaId: number;
 }

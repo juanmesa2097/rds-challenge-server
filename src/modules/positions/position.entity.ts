@@ -1,7 +1,14 @@
 import { AbstractBaseEntity } from '@common/entities/abstract-base.entity';
 import { AreaEntity } from '@modules/areas/area.entity';
 import { EmployeeEntity } from '@modules/employees/employee.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  RelationId,
+} from 'typeorm';
 
 @Entity('position')
 export class PositionEntity extends AbstractBaseEntity {
@@ -16,7 +23,11 @@ export class PositionEntity extends AbstractBaseEntity {
     eager: true,
   })
   @JoinColumn({ name: 'area_id' })
-  areaId: AreaEntity;
+  area: AreaEntity;
+
+  @Column({ name: 'area_id' })
+  @RelationId((position: PositionEntity) => position.area)
+  areaId: number;
 
   @OneToMany(() => EmployeeEntity, (employee) => employee.positionId)
   employees: EmployeeEntity[];
