@@ -40,6 +40,7 @@ export class EmployeesService {
         .addSelect('employee.commission', 'commission')
         .addSelect('employee.hiringDate', 'hiringDate')
         .addSelect('employee.position_id', 'positionId')
+        .addSelect('employee.status', 'status')
         .addSelect('employee.created_at', 'createdAt')
         .addSelect('employee.updated_at', 'updatedAt')
         .addSelect('area.id', 'areaId')
