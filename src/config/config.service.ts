@@ -12,7 +12,7 @@ export class ConfigService {
   }
 
   getPort(): number {
-    return +this.getValue('APP_PORT');
+    return +process.env.PORT || +this.getValue('APP_PORT');
   }
 
   getTypeOrmConfig(): TypeOrmModuleOptions {
