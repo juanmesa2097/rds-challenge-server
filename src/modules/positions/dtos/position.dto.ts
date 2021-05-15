@@ -13,6 +13,11 @@ export class PositionDto extends AbstractBaseDto {
   name: string;
 
   @Expose()
+  @IsString()
+  @MaxLength(5)
+  validationCode: string;
+
+  @Expose()
   @Type(() => AreaDto)
   area: AreaDto;
 

@@ -19,6 +19,14 @@ export class PositionEntity extends AbstractBaseEntity {
   })
   name: string;
 
+  @Column({
+    type: 'varchar',
+    name: 'validation_code',
+    length: 5,
+    nullable: true,
+  })
+  validationCode: string;
+
   @ManyToOne(() => AreaEntity, (area) => area.positions, {
     eager: true,
   })

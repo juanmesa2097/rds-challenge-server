@@ -34,8 +34,18 @@ export class EmployeeDto extends AbstractBaseDto {
   @Expose()
   @IsNotEmpty()
   @IsString()
-  @MaxLength(3)
+  @MaxLength(50)
   country: string;
+
+  @Expose()
+  @IsNotEmpty()
+  @IsString()
+  countryFlagUrl: string;
+
+  @Expose()
+  @IsNotEmpty()
+  @IsString()
+  avatarUrl: string;
 
   @Expose()
   @IsOptional()

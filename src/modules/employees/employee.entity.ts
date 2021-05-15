@@ -24,10 +24,22 @@ export class EmployeeEntity extends AbstractBaseEntity {
 
   @Column({
     type: 'varchar',
-    length: 3,
-    nullable: false,
+    length: 50,
+    nullable: true,
   })
   country: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  countryFlagUrl: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  avatarUrl: string;
 
   @Column({
     type: 'integer',
