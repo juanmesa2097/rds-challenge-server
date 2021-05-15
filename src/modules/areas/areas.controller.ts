@@ -1,6 +1,6 @@
 import { WrapperResult } from '@common/interfaces';
-import { AddAreaDto } from '@modules/areas/dtos/add-Area.dto';
-import { GetAreaDto } from '@modules/areas/dtos/get-Area.dto';
+import { AddAreaDto } from '@modules/areas/dtos/add-area.dto';
+import { GetAreaDto } from '@modules/areas/dtos/get-area.dto';
 import {
   Body,
   Controller,
